@@ -72,6 +72,10 @@ Use evtxtract to dump event logs and identify events related to user creation. (
 ```
 evtxtract artefact.vmem > output.xml
 ```
+- Event ID 4720 is a specific event logged in the Windows Security Event Log whenever a new user account is created on a Windows system. This event provides detailed information about the creation of the user account, which is essential for security monitoring and auditing. <br>
+
+![image](https://github.com/user-attachments/assets/2b91c835-bcc7-494a-ad77-518fe3cec86f)
+
 Alternatively, use volatility to dump memory for the suspicious process and search for user creation evidence:
 
 ```
@@ -79,7 +83,7 @@ volatility -f artefact.vmem --profile=Win7SP1x86 memdump -p 1732 -D /dump | stri
 ```
 Answer: sysadmin <br>
 
-Flag: ihack{sysadmin}
+Flag: ```ihack{sysadmin}```
 
 ### VI. IP Address of RDP Connection
 Task: Identify the IP address that connected to the PC through RDP.
@@ -89,28 +93,41 @@ Use evtxtract to analyze event logs and identify RDP connection events.
 ```
 evtxtract artefact.vmem > output.xml
 ```
+
+Microsoft-Windows-TerminalServices-LocalSessionManager/Operational Log
+- Event ID 21 - Remote Desktop Services: Session logon succeeded
+
+![image](https://github.com/user-attachments/assets/56b5e499-d858-4009-a6b0-9344c5dbc24b)
+
+Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational Log
+- Event ID 1149 - Remote Desktop Services: User authentication succeeded
+
+![image](https://github.com/user-attachments/assets/2521374b-6fa6-4e13-b9f4-2a17cd5729a8)
+
 Answer: 192.168.74.171 
 
 <br>
 
-Flag: ihack{192.168.74.171}
+Flag: ```ihack{192.168.74.171}```
 
 ### VII. Timestamp of User Creation
 Task: Provide the timestamp when the attacker created the new user on the victim's PC.
 
 Command: Use evtxtract to analyze event logs and identify the timestamp of user creation (event ID 4720).
+![image](https://github.com/user-attachments/assets/cc107f1f-330e-4f6e-9f39-04c26c959793)
 
 Answer: 2022-12-09 13:34:07 (UTC)<br><br>
 
-Flag: ihack{2022-12-09 13:34:07} & ihack{2022-12-09 21:34:07}
+Flag: ```ihack{2022-12-09 13:34:07}``` & ```ihack{2022-12-09 21:34:07}```
 
 ## Tools and References
 
-Volatility Framework: A memory forensics framework for incident response and malware analysis.
-Volatility
-EVTXtract: A tool to extract event logs from memory images.
-EVTXtract
-FRSecure Blog on RDP Connection Event Logs:
-RDP Connection Event Logs
-Conclusion
-This walkthrough demonstrates the step-by-step process of using memory forensics tools to identify key artifacts from a memory dump during an incident investigation. Each step includes the commands used, the extracted information, and the corresponding flags in the required format.
+1. Volatility Framework: A memory forensics framework for incident response and malware analysis. <br>
+ <a href = "https://volatilityfoundation.org/">Volatility</a> <br>
+ 
+2. EVTXtract: A tool to extract event logs from memory images. <br>
+<a href = "https://github.com/williballenthin/EVTXtract">EVTXtract</a>
+
+3.  FRSecure Blog on RDP Connection Event Logs:
+<a href =  "https://frsecure.com/blog/rdp-connection-event-logs/">RDP Connection Event Logs</a>
+
