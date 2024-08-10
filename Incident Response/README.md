@@ -32,18 +32,28 @@ $=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(![]+"")[$],_$_:++$,$_$$:({}+"")[
    - Decode the jjencoded JavaScript using `https://www.53lu.com/tool/jjencode/` or Node.js.
 ![image](https://github.com/user-attachments/assets/b2c7474a-0f64-4688-866c-c6202b06daf5)
 
-Flag" ```ihack{ba0af173017c720f05db7df633dfa066}```
+Flag =  ```ihack{ba0af173017c720f05db7df633dfa066}```
 
 ## DFIR 3: Analyze `NTUSER.dat` with Registry Explorer
 
+- NTUSER.dat is a critical file in the Windows operating system that stores user-specific configuration and preferences. 
+- NTUSER.dat can be analyzed to uncover user activity, such as recent documents accessed, programs executed, internet history, and more.
+- Tools like Registry Explorer or RegRipper can be used to parse and examine this file.
+
 1. **Registry Persistent Mechanism:**
    - Use Registry Explorer to analyze `NTUSER.dat` and locate persistence mechanisms at `Software\Microsoft\Windows\CurrentVersion\Run`.
+![image](https://github.com/user-attachments/assets/7cc5a6be-b6fb-4559-b225-f9a7ba8d2a78)
+
+Flag = ```ihack{a53108f7543b75adbb34afc035d4cdf6}```
 
 ## DFIR 4: Identify Malicious PowerShell Script Execution
 
 1. **Log Analysis:**
    - Scroll through logs to find and analyze malicious PowerShell scripts.
    - Identify `a.jsp` as the file used by the malware.
+![image](https://github.com/user-attachments/assets/64c9de35-bfff-4479-ab26-bc3f1314d58e)
+
+Flag = ```ihack{a.jsp}```
 
 ## DFIR 5: WMI Persistence
 
